@@ -34,10 +34,10 @@ class StorejobRequest extends FormRequest
             'country' => 'required',
             'job_title' => 'required',
             'job_location' => 'required',
-            'job_start_date' => 'reequired|date',
+            'job_start_date' => 'required|date',
             'job_end_date' => 'required|date',
             'job_salary_($)_per hour' => 'required|numeric',
-            'job_hours' => 'requied|numeric|min:1|max:24'
+            'job_hours' => 'required|numeric|min:1|max:24'
         ];
     }
 }
