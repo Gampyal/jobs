@@ -56,8 +56,7 @@ class JobController extends Controller
      */
     public function update(UpdatejobRequest $request, job $job)
     {
-        $find = Job::findOrFail($job);
-        $find->fill($request->validated())->save();
+        $job->fill($request->validated())->save();
         return response()->json('Record updated successfully', 200);
     }
 
