@@ -6,6 +6,7 @@ use App\Http\Requests\StorejobRequest;
 use App\Http\Requests\UpdatejobRequest;
 use App\Models\job;
 
+
 class JobController extends Controller
 {
     /**
@@ -30,7 +31,7 @@ class JobController extends Controller
      */
     public function store(StorejobRequest $request)
     {
-        Job::Create($this->validated());
+        Job::Create($request->validated());
         return response()->json('Record created successfully', 200);
     }
 
@@ -39,8 +40,7 @@ class JobController extends Controller
      */
     public function show(job $job)
     {
-        $find = Job::findOrFail($job);
-        return response()->json('$find', 200);
+        return response()->json($job, 200);
     }
 
     /**
@@ -57,7 +57,7 @@ class JobController extends Controller
     public function update(UpdatejobRequest $request, job $job)
     {
         $find = Job::findOrFail($job);
-        $find->update($request->validated());
+        $find->fill($request->validated())->save();
         return response()->json('Record updated successfully', 200);
     }
 
@@ -66,8 +66,7 @@ class JobController extends Controller
      */
     public function destroy(job $job)
     {
-        $find = Job::findOrFail($job);
-        $find->destroy();
+        $job->destroy();
         return response()->json('Record deleted successfully', 200);
     }
 }

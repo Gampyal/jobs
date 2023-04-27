@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Hash;
 
 class StorejobRequest extends FormRequest
 {
@@ -25,7 +26,7 @@ class StorejobRequest extends FormRequest
             'fname' => 'required|min:3|max:255',
             'lname' => 'required|min:3|max:255',
             'email' => 'required|email',
-            'password' => 'required|password',
+            'password' => 'required',
             'age' => 'numeric',
             'phone' => 'required|numeric',
             'address' => 'required',

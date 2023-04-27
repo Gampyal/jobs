@@ -11,7 +11,7 @@ class UpdatejobRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,22 @@ class UpdatejobRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'fname' => 'required|min:3|max:255',
+            'lname' => 'required|min:3|max:255',
+            'email' => 'required|email',
+            'age' => 'numeric',
+            'phone' => 'required|numeric',
+            'address' => 'required',
+            'city' => 'required',
+            'state' => 'required',
+            'country' => 'required',
+            'job_title' => 'required',
+            'job_location' => 'required',
+            'job_start_date' => 'required|date',
+            'job_end_date' => 'required|date',
+            'job_salary_($)_per hour' => 'required|numeric',
+            'job_hours' => 'required|numeric|min:1|max:24'
+
         ];
     }
 }
