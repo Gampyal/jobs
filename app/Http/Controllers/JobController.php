@@ -63,9 +63,9 @@ class JobController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(job $job)
+    public function delete(job $job)
     {
-        $job->destroy();
+        $job->delete();
         return response()->json('Record deleted successfully', 200);
     }
 }
