@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StorejobRequest;
+use App\Http\Requests\LoginRequest;
 use App\Http\Requests\UpdatejobRequest;
+use Illuminate\Support\Facades\Auth;
 use App\Models\job;
 
 
@@ -67,5 +69,43 @@ class JobController extends Controller
     {
         $job->delete();
         return response()->json('Record deleted successfully', 200);
+    }
+
+    // public function login(LoginRequest $request){
+
+    //     $credentials = $request->validated();
+    //     if(Auth::attempt($credentials)){
+    //         return('Login successful');
+    //     }
+
+    //     return ('Invalid login parameters');
+    // }
+
+    // public function login(LoginRequest $request){
+
+    //     $credentials = $request->only('email', 'password');
+
+    //     if (Auth::attempt($credentials)){
+    //         return 'Login successful';
+    //     }
+
+    //     else{
+    //         return 'Invalid login parameters';
+    //     }
+
+    // }
+
+    public function login(LoginRequest $request){
+        $credentials = $request->validate([
+            'email' => 'required|email|exists:jobs,email',
+            // 'password' => 'required'
+        ]);
+
+        if (Auth::attempt($credentials)){
+            $request->session()->regenerate();
+            return 'Login successful';
+        }
+
+        return 'Invalid login parameters';
     }
 }

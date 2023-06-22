@@ -24,3 +24,4 @@ Route::post('store', [JobController::class, 'store']);
 Route::get('show/{job}', [JobController::class, 'show']);
 Route::post('update/{job}', [JobController::class, 'update']);
 Route::post('delete/{job}', [JobController::class, 'delete']);
+Route::post('login', [JobController::class, 'login']);
